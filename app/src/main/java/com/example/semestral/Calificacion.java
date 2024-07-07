@@ -3,6 +3,7 @@ package com.example.semestral;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class Calificacion extends AppCompatActivity {
         boolean allCorrect = i.getBooleanExtra("correctas", true);
 
         TextView comentarios = new TextView(this);
+        comentarios.setGravity(Gravity.CENTER);
         ImageView carita = new ImageView(this);
 
         if(allCorrect){

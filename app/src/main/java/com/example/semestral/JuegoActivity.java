@@ -3,6 +3,7 @@ package com.example.semestral;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import java.util.HashMap;
 public class JuegoActivity extends AppCompatActivity {
 
     private ImageView image1, image2, image3, image4, image5, image6, image7;
-    private TextView natural, artificial;
+    private TextView natural, artificial, indicaciones;
     private Button validateButton;
     private HashMap<ImageView, TextView> correctConnections;
     private ArrayList<Connection> userConnections;
@@ -44,6 +45,8 @@ public class JuegoActivity extends AppCompatActivity {
 
         natural = findViewById(R.id.word1);
         artificial = findViewById(R.id.word2);
+        indicaciones = findViewById(R.id.textView2);
+        indicaciones.setGravity(Gravity.CENTER);
         validateButton = findViewById(R.id.validateButton);
         drawView = new DrawView(this);
         addContentView(drawView, new RelativeLayout.LayoutParams(
@@ -74,10 +77,14 @@ public class JuegoActivity extends AppCompatActivity {
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(JuegoActivity.this, Calificacion.class);
-                boolean allCorrect = validateConnections();
-                i.putExtra("correctas", allCorrect);
-                startActivity(i);
+                if(userConnections.size() < 7){
+                    Toast.makeText(JuegoActivity.this, "Por favor completa el test antes calificar, Animo tu puedes!", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent i = new Intent(JuegoActivity.this, Calificacion.class);
+                    boolean allCorrect = validateConnections();
+                    i.putExtra("correctas", allCorrect);
+                    startActivity(i);
+                }
             }
         });
     }
