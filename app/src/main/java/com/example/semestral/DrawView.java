@@ -18,8 +18,8 @@ public class DrawView extends View {
     public DrawView(Context context) {
         super(context);
         paint = new Paint();
-        paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(5);
+        paint.setColor(Color.parseColor("#FFC300"));
+        paint.setStrokeWidth(15);
         lines = new ArrayList<>();
     }
 
